@@ -16,7 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let navigationController = UINavigationController(rootViewController: ChatsViewController())
+        let navigationController = UINavigationController(rootViewController: ProfileViewController())
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backgroundColor = UIColor.primaryNavigationBarBackogroundColor
+        navigationController.navigationBar.standardAppearance = navBarAppearance
+        navigationController.navigationBar.scrollEdgeAppearance = navBarAppearance
+        
+        navigationController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
@@ -48,7 +55,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

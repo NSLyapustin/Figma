@@ -10,8 +10,6 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let fonts = Bundle.main.urls(forResourcesWithExtension: "ttf", subdirectory: nil)
         fonts?.forEach({ url in
