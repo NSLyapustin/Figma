@@ -75,7 +75,6 @@ class ChatsViewController: UIViewController {
     }
 
     @objc private func onBackButtonTouchUpInside() {
-        sender.setTitleColor(.lightGray, for: .normal)
         navigationController?.popViewController(animated: true)
     }
 }
