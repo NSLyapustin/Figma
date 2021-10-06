@@ -30,4 +30,12 @@ extension UIColor {
                 UIColor(red: 0.925, green: 0.921, blue: 0.929, alpha: 1)
         }
     }
+
+    static var primaryNavigationBarBackogroundColor: UIColor {
+        return UIColor { (traits) -> UIColor in
+            return traits.userInterfaceStyle == .dark ?
+                UIColor(red: 0.114, green: 0.114, blue: 0.114, alpha: 0.94) :
+                UIColor(red: 0.976, green: 0.976, blue: 0.976, alpha: 0.94)
+        }
+    }
 }

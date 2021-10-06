@@ -129,7 +129,7 @@ class MessageTableViewCell: UITableViewCell {
         let profileNameConstraints = [
             NSLayoutConstraint(item: profileNameLabel, attribute: .leading, relatedBy: .equal, toItem: profileImageView, attribute: .trailing, multiplier: 1, constant: 8),
             NSLayoutConstraint(item: profileNameLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 24),
-            NSLayoutConstraint(item: profileNameLabel, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: timeLabel, attribute: .leading, multiplier: 1, constant: 20),
+            NSLayoutConstraint(item: profileNameLabel, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: timeLabel, attribute: .leading, multiplier: 1, constant: -5),
             profileNameLabel.heightAnchor.constraint(equalToConstant: 20)
         ]
         NSLayoutConstraint.activate(profileNameConstraints)

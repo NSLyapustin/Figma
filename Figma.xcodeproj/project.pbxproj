@@ -21,6 +21,8 @@
 		05813C032709F79700AB757A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05813C022709F79700AB757A /* Assets.xcassets */; };
 		05813C062709F79700AB757A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05813C042709F79700AB757A /* LaunchScreen.storyboard */; };
 		05D10CA1270B978B00A0A2E1 /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D10CA0270B978B00A0A2E1 /* UIFont+Extensions.swift */; };
+		05F8FF9F270E07D60015E344 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8FF9E270E07D60015E344 /* ProfileViewController.swift */; };
+		05F8FFA2270E13CD0015E344 /* LogoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F8FFA1270E13CD0015E344 /* LogoutButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		05813C052709F79700AB757A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05813C072709F79700AB757A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05D10CA0270B978B00A0A2E1 /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		05F8FF9E270E07D60015E344 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		05F8FFA1270E13CD0015E344 /* LogoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +105,9 @@
 		05813BF82709F79400AB757A /* Figma */ = {
 			isa = PBXGroup;
 			children = (
+				05F8FF9D270E07B00015E344 /* Modules */,
 				057CDCF6270A508400916A56 /* Extensions */,
 				05813C0E270A138600AB757A /* Resources */,
-				05813C0D270A0F9800AB757A /* ChatsViewController */,
 				05813BF92709F79400AB757A /* AppDelegate.swift */,
 				05813BFB2709F79400AB757A /* SceneDelegate.swift */,
 				05813C042709F79700AB757A /* LaunchScreen.storyboard */,
@@ -145,6 +149,32 @@
 				057CDCEA270A1DBC00916A56 /* Habibi-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		05F8FF9C270E07A10015E344 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				05F8FFA0270E13B40015E344 /* Views */,
+				05F8FF9E270E07D60015E344 /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		05F8FF9D270E07B00015E344 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				05813C0D270A0F9800AB757A /* ChatsViewController */,
+				05F8FF9C270E07A10015E344 /* ProfileViewController */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		05F8FFA0270E13B40015E344 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				05F8FFA1270E13CD0015E344 /* LogoutButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,7 +253,9 @@
 				0507C685270DAC490023A228 /* UIView+Extensions.swift in Sources */,
 				057CDCF1270A3EED00916A56 /* Data.swift in Sources */,
 				057CDCF5270A4FF100916A56 /* MessagesTableViewHeader.swift in Sources */,
+				05F8FFA2270E13CD0015E344 /* LogoutButton.swift in Sources */,
 				057CDCF8270A509500916A56 /* UILabel+Extensions.swift in Sources */,
+				05F8FF9F270E07D60015E344 /* ProfileViewController.swift in Sources */,
 				057CDCEE270A24CE00916A56 /* MessageTableViewCell.swift in Sources */,
 				05813BFA2709F79400AB757A /* AppDelegate.swift in Sources */,
 				0507C687270DADF00023A228 /* UIColor+Extensions.swift in Sources */,

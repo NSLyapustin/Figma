@@ -31,11 +31,11 @@ class ChatsViewController: UIViewController {
         tableView.tableHeaderView = MessagesTableViewHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 135))
         tableView.dataSource = self
         tableView.delegate = self
-        title = "Messages"
         let label = UILabel()
         let mutableString = NSMutableAttributedString(string: "MESSAGES", attributes: [NSAttributedString.Key.font : UIFont.habibi(with: 17)])
         label.attributedText = mutableString
         navigationItem.titleView = label
+        navigationItem.largeTitleDisplayMode = .never
         tableView.tableFooterView = UIView()
         
         view.backgroundColor = .systemBackground
@@ -57,6 +57,9 @@ class ChatsViewController: UIViewController {
         button.contentHorizontalAlignment = .fill
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         navigationItem.leftBarButtonItem?.tintColor = .label
+
+        button.addTarget(self, action: #selector(onBackButtonTouchUpInside), for: .touchUpInside)
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
         
         searchController.obscuresBackgroundDuringPresentation = false
@@ -69,6 +72,10 @@ class ChatsViewController: UIViewController {
     
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
+    }
+
+    @objc private func onBackButtonTouchUpInside() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

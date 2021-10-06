@@ -19,7 +19,7 @@ class Data {
         UIImage(named: "Profile4")
     ]
 
-    static let names = ["Jessica Thompson", "Kat Williams", "Jacob Washington", "Leslie Alexander", "Tony Monta"]
+    static let names = ["Jessica Thomawdawaskljdhaksjdhalkjshdlakjhdawdeawdawpson", "Kat Williams", "Jacob Washington", "Leslie Alexander", "Tony Monta"]
 
     static let messages = ["Hey you! Are u there?", "OMG! OMG! OMG!", "Sure. Sunday works for me!", "Sent you an invite for next monday.", "How’s Alicia doing? Ask her to give mу somebody once told me"]
 
