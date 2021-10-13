@@ -42,13 +42,10 @@ class ChatsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        let tableViewConstraints = [
-            NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(tableViewConstraints)
+        tableView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
         tableView.backgroundColor = .systemBackground
 
         let button = UIButton(type: .custom)
@@ -56,9 +53,7 @@ class ChatsViewController: UIViewController {
         button.setImage(UIImage(named: "BackIcon"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         navigationItem.leftBarButtonItem?.tintColor = .label
-
         button.addTarget(self, action: #selector(onBackButtonTouchUpInside), for: .touchUpInside)
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
         
         searchController.obscuresBackgroundDuringPresentation = false
@@ -67,7 +62,6 @@ class ChatsViewController: UIViewController {
         searchController.hidesNavigationBarDuringPresentation = false
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
     
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: MessageTableViewCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension

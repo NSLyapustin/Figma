@@ -46,29 +46,25 @@ class ChatViewController: UIViewController {
         view.addSubview(tableView)
         chatTextFieldView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(chatTextFieldView)
+        chatTextFieldView.addBorders(edges: [.top], color: .lightGray, thickness: 0.5)
+        chatTextFieldView.delegate = self
     
         let label = UILabel()
         let mutableString = NSMutableAttributedString(string: "Jessica Thompson", attributes: [NSAttributedString.Key.font : UIFont.habibi(with: 17)])
         label.attributedText = mutableString
         navigationItem.titleView = label
+        
+        chatTextFieldView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(88)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
 
-        let chatTextFieldViewConstraints = [
-            chatTextFieldView.heightAnchor.constraint(equalToConstant: 100),
-            NSLayoutConstraint(item: chatTextFieldView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: chatTextFieldView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: chatTextFieldView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(chatTextFieldViewConstraints)
-        chatTextFieldView.delegate = self
-        chatTextFieldView.addBorders(edges: [.top], color: .lightGray, thickness: 0.5)
-
-        let tableViewConstraints = [
-            NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: chatTextFieldView, attribute: .top, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(tableViewConstraints)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(chatTextFieldView.snp.top)
+        }
 
         navigationItem.hidesBackButton = true
 
@@ -140,6 +136,10 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
         }
         header.date = Data.messageSections[section].date
         return header
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

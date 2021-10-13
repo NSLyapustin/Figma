@@ -21,7 +21,6 @@ class ChatTextFieldView: UIView {
 
     private let messageTextField: UITextField = {
         let textField = TextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
         textField.layer.cornerRadius = 20
         textField.backgroundColor = .textFieldBackground
         textField.attributedPlaceholder = NSAttributedString(string: "Type your message here...", attributes: [NSAttributedString.Key.foregroundColor: UIColor.label,
@@ -31,7 +30,6 @@ class ChatTextFieldView: UIView {
 
     private let sendButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 16
 
         button.setImage(UIImage(named: "send"), for: .normal)
@@ -61,25 +59,23 @@ class ChatTextFieldView: UIView {
     // MARK: -
     
     private func setup() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 88).isActive = true
+        self.snp.makeConstraints { make in
+            make.height.equalTo(88)
+        }
     
         addSubview(messageTextField)
         addSubview(sendButton)
-    
-        let messageTextFieldConstraints = [
-            NSLayoutConstraint(item: messageTextField, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: messageTextField, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -16),
-            NSLayoutConstraint(item: messageTextField, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -36),
-            NSLayoutConstraint(item: messageTextField, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 12)
-        ]
-        NSLayoutConstraint.activate(messageTextFieldConstraints)
-    
-        let sendButtonConstraints = [
-            NSLayoutConstraint(item: sendButton, attribute: .trailing, relatedBy: .equal, toItem: messageTextField, attribute: .trailing, multiplier: 1, constant: -4),
-            NSLayoutConstraint(item: sendButton, attribute: .centerY, relatedBy: .equal, toItem: messageTextField, attribute: .centerY, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(sendButtonConstraints)
+
+        messageTextField.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(36)
+            make.top.equalToSuperview().offset(12)
+        }
+        
+        sendButton.snp.makeConstraints { make in
+            make.trailing.equalTo(messageTextField).inset(4)
+            make.centerY.equalTo(messageTextField)
+        }
 
         sendButton.addTarget(self, action: #selector(onSendButtonTouchUpInside), for: .touchUpInside)
     }

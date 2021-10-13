@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LogoutButton: UIButton {
 
@@ -19,7 +20,6 @@ class LogoutButton: UIButton {
 
     private let arrowImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 12, height: 10))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "Vector")
         imageView.tintColor = .label
         return imageView
@@ -27,7 +27,6 @@ class LogoutButton: UIButton {
 
     private let logoutLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.habibi(with: 14)
         label.textColor = .label
         label.text = "Logout"
@@ -56,17 +55,15 @@ class LogoutButton: UIButton {
 
         addSubview(logoutLabel)
         addSubview(arrowImageView)
-
-        let arrowImageViewConstraints = [
-            NSLayoutConstraint(item: arrowImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 34),
-            NSLayoutConstraint(item: arrowImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 13.33)
-        ]
-        NSLayoutConstraint.activate(arrowImageViewConstraints)
-
-        let logoutLabelConstraints = [
-            NSLayoutConstraint(item: logoutLabel, attribute: .leading, relatedBy: .equal, toItem: arrowImageView, attribute: .trailing, multiplier: 1, constant: 19),
-            NSLayoutConstraint(item: logoutLabel, attribute: .centerY, relatedBy: .equal, toItem: arrowImageView, attribute: .centerY, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(logoutLabelConstraints)
+        
+        arrowImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(34)
+            make.top.equalToSuperview().inset(13.33)
+        }
+        
+        logoutLabel.snp.makeConstraints { make in
+            make.leading.equalTo(arrowImageView.snp.leading).inset(19)
+            make.centerY.equalTo(arrowImageView.snp.centerY)
+        }
     }
 }
