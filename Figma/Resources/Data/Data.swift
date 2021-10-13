@@ -32,4 +32,34 @@ class Data {
     ]
 
     static let pinnedNames = ["Kim", "Steve", "Mia"]
+
+    static var messageSections = [
+        MessageSection(messages:
+                        [
+                            Message(text: "Alex, let’s meet this weekend. I’ll check with Dave too 😎", time: "8:27 PM", isOutgoing: false),
+                            Message(text: "Sure. Let’s aim for saturday", time: "8:56 PM", isOutgoing: true),
+                            Message(text: "I’m visiting mom this sunday 👻", time: "8:56 PM", isOutgoing: true),
+                            Message(text: "Alrighty! Will give you a call shortly 🤗", time: "9:01 PM", isOutgoing: false),
+                            Message(text: "❤️", time: "9:04 PM", isOutgoing: true)
+                        ],
+                       date: "SEP 14, 2021"),
+        MessageSection(messages:
+                        [
+                            Message(text: "Hey you! Are you there?", time: "11:53 AM", isOutgoing: false),
+                            Message(text: "👋 Hi Jess! What’s up?", time: "12:14 PM", isOutgoing: true)
+                        ],
+                       date: "TODAY")
+    ]
+    
+}
+
+struct MessageSection {
+    var messages: [Message]
+    let date: String
+}
+
+struct Message {
+    let text: String
+    let time: String
+    let isOutgoing: Bool
 }

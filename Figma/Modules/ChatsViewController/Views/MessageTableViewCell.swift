@@ -83,7 +83,7 @@ class MessageTableViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.habibi(with: 14)
-        label.textColor = UIColor.primaryMessageColor
+        label.textColor = .secondaryLighterGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
