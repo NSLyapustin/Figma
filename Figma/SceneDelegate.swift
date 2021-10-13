@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let navigationController = UINavigationController(rootViewController: ProfileViewController())
+        let navigationController = UINavigationController(rootViewController: ChatViewController())
         
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundColor = UIColor.primaryNavigationBarBackogroundColor

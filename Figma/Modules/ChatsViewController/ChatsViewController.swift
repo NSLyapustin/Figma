@@ -28,6 +28,7 @@ class ChatsViewController: UIViewController {
     // MARK: -
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
         tableView.tableHeaderView = MessagesTableViewHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 135))
         tableView.dataSource = self
         tableView.delegate = self
@@ -53,8 +54,6 @@ class ChatsViewController: UIViewController {
         let button = UIButton(type: .custom)
         button.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
         button.setImage(UIImage(named: "BackIcon"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         navigationItem.leftBarButtonItem?.tintColor = .label
 
@@ -104,5 +103,8 @@ extension ChatsViewController: UITableViewDataSource {
 extension ChatsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+
+        let chatViewController = ChatViewController()
+        navigationController?.pushViewController(chatViewController, animated: true)
     }
 }
