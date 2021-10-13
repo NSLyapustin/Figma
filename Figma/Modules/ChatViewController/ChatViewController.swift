@@ -53,7 +53,7 @@ class ChatViewController: UIViewController {
         navigationItem.titleView = label
 
         let chatTextFieldViewConstraints = [
-            chatTextFieldView.heightAnchor.constraint(equalToConstant: 100),
+            chatTextFieldView.heightAnchor.constraint(equalToConstant: 88),
             NSLayoutConstraint(item: chatTextFieldView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: chatTextFieldView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: chatTextFieldView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
