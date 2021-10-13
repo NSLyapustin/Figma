@@ -89,5 +89,6 @@ class ChatTextFieldView: UIView {
         let time = dateFormatter.string(from: Date())
         Data.messageSections[Data.messageSections.count - 1].messages.append(Message(text: text, time: time, isOutgoing: true))
         delegate?.onSendButtonTouchUpInside()
+        messageTextField.text = ""
     }
 }
