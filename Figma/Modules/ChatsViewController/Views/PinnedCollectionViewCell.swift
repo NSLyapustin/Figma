@@ -39,8 +39,9 @@ class PinnedCollectionViewCell: UICollectionViewCell {
                 label.textColor = UIColor.primaryBlue
                 label.translatesAutoresizingMaskIntoConstraints = false
                 profileImageView.addSubview(label)
-                label.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
-                label.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor, constant: 0).isActive = true
+                label.snp.makeConstraints { make in
+                    make.center.equalToSuperview()
+                }
             }
         }
     }
@@ -80,19 +81,16 @@ class PinnedCollectionViewCell: UICollectionViewCell {
     private func setup() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(profileImageView)
-        
-        let profileImageConstaints = [
-            NSLayoutConstraint(item: profileImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 8),
-            NSLayoutConstraint(item: profileImageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0),
-            profileImageView.heightAnchor.constraint(equalToConstant: 48),
-            profileImageView.widthAnchor.constraint(equalToConstant: 48)
-        ]
-        NSLayoutConstraint.activate(profileImageConstaints)
 
-        let nameLabelConstraints = [
-            NSLayoutConstraint(item: nameLabel, attribute: .centerX, relatedBy: .equal, toItem: profileImageView, attribute: .centerX, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: profileImageView, attribute: .bottom, multiplier: 1, constant: 8)
-        ]
-        NSLayoutConstraint.activate(nameLabelConstraints)
+        profileImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(8)
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(48)
+        }
+
+        nameLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(profileImageView)
+            make.top.equalTo(profileImageView.snp.bottom).offset(8)
+        }
     }
 }

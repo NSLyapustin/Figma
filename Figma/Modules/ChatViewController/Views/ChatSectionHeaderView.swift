@@ -30,7 +30,6 @@ class ChatSectionHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = UIFont.habibi(with: 12)
         label.textColor = .secondaryLighterGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -52,12 +51,10 @@ class ChatSectionHeaderView: UITableViewHeaderFooterView {
     private func setup() {
         addSubview(dateLabel)
         contentView.backgroundColor = .systemBackground
-    
-        let dateLabelConstraints = [
-            NSLayoutConstraint(item: dateLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 6),
-            NSLayoutConstraint(item: dateLabel, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -6),
-            dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ]
-        NSLayoutConstraint.activate(dateLabelConstraints)
+
+        dateLabel.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(6)
+            make.centerX.equalToSuperview()
+        }
     }
 }

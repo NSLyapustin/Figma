@@ -50,13 +50,11 @@ class LeftChatTableViewCell: UITableViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.layer.cornerRadius = 20
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
     private let messageView: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .leftMessageBackground
         view.layer.cornerRadius = 12
         return view
@@ -65,7 +63,6 @@ class LeftChatTableViewCell: UITableViewCell {
     private let messageLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.habibi(with: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textColor = .label
         return label
@@ -99,36 +96,29 @@ class LeftChatTableViewCell: UITableViewCell {
         contentView.addSubview(timeLabel)
         messageView.addSubview(messageLabel)
         contentView.addSubview(profileImageView)
-        
-        let profileImageViewConstraints = [
-            NSLayoutConstraint(item: profileImageView, attribute: .leading, relatedBy: .equal, toItem: contentView, attribute: .leading, multiplier: 1, constant: 17),
-            NSLayoutConstraint(item: profileImageView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 2),
-            profileImageView.widthAnchor.constraint(equalToConstant: 32),
-            profileImageView.widthAnchor.constraint(equalToConstant: 32)
-        ]
-        NSLayoutConstraint.activate(profileImageViewConstraints)
 
-        let messageViewConstraints = [
-            NSLayoutConstraint(item: messageView, attribute: .top, relatedBy: .equal, toItem: contentView, attribute: .top, multiplier: 1, constant: 2),
-            NSLayoutConstraint(item: messageView, attribute: .leading, relatedBy: .equal, toItem: profileImageView, attribute: .trailing, multiplier: 1, constant: 17),
-            NSLayoutConstraint(item: messageView, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: contentView, attribute: .trailing, multiplier: 1, constant: -60)
-        ]
-        NSLayoutConstraint.activate(messageViewConstraints)
+        profileImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(17)
+            make.top.equalToSuperview().offset(2)
+            make.width.height.equalTo(32)
+        }
 
-        let messageLabelConstraints = [
-            NSLayoutConstraint(item: messageLabel, attribute: .top, relatedBy: .equal, toItem: messageView, attribute: .top, multiplier: 1, constant: 4),
-            NSLayoutConstraint(item: messageLabel, attribute: .trailing, relatedBy: .equal, toItem: messageView, attribute: .trailing, multiplier: 1, constant: -8),
-            NSLayoutConstraint(item: messageLabel, attribute: .leading, relatedBy: .equal, toItem: messageView, attribute: .leading, multiplier: 1, constant: 8),
-            NSLayoutConstraint(item: messageLabel, attribute: .bottom, relatedBy: .equal, toItem: messageView, attribute: .bottom, multiplier: 1, constant: -4)
-        ]
-        NSLayoutConstraint.activate(messageLabelConstraints)
+        messageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(2)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(17)
+            make.trailing.lessThanOrEqualToSuperview().inset(60)
+        }
+
+        messageLabel.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(4)
+            make.trailing.leading.equalToSuperview().inset(8)
+        }
         
-        let timeLabelConstraints = [
-            NSLayoutConstraint(item: timeLabel, attribute: .top, relatedBy: .equal, toItem: messageView, attribute: .bottom, multiplier: 1, constant: 4),
-            NSLayoutConstraint(item: timeLabel, attribute: .leading, relatedBy: .equal, toItem: messageView, attribute: .leading, multiplier: 1, constant: -4),
-            NSLayoutConstraint(item: timeLabel, attribute: .bottom, relatedBy: .equal, toItem: contentView, attribute: .bottom, multiplier: 1, constant: -4),
-            NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .greaterThanOrEqual, toItem: contentView, attribute: .trailing, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(timeLabelConstraints)
+        timeLabel.snp.makeConstraints { make in
+            make.top.equalTo(messageView.snp.bottom).offset(4)
+            make.leading.equalTo(messageView)
+            make.trailing.greaterThanOrEqualToSuperview()
+            make.bottom.equalToSuperview().inset(4)
+        }
     }
 }

@@ -39,8 +39,9 @@ class MessageTableViewCell: UITableViewCell {
                 label.textColor = UIColor.primaryBlue
                 label.translatesAutoresizingMaskIntoConstraints = false
                 profileImageView.addSubview(label)
-                label.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor, constant: 0).isActive = true
-                label.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor, constant: 0).isActive = true
+                label.snp.makeConstraints { make in
+                    make.center.equalToSuperview()
+                }
             }
         }
     }
@@ -68,7 +69,6 @@ class MessageTableViewCell: UITableViewCell {
     private let profileImageView: UIImageView = {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.layer.cornerRadius = 20
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
 
@@ -76,7 +76,6 @@ class MessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.habibi(with: 14)
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -84,7 +83,6 @@ class MessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.habibi(with: 14)
         label.textColor = .secondaryLighterGray
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -92,7 +90,6 @@ class MessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont.habibi(with: 14)
         label.textColor = .label
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -117,35 +114,35 @@ class MessageTableViewCell: UITableViewCell {
         addSubview(messageLabel)
         addSubview(timeLabel)
 
-        let profileImageConstraints = [
-            NSLayoutConstraint(item: profileImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 24),
-            NSLayoutConstraint(item: profileImageView, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 26),
-            NSLayoutConstraint(item: profileImageView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: -26),
-            profileImageView.widthAnchor.constraint(equalToConstant: 40),
-            profileImageView.heightAnchor.constraint(equalToConstant: 40)
-        ]
-        NSLayoutConstraint.activate(profileImageConstraints)
+        profileImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(24)
+            make.top.equalToSuperview().offset(26)
+            make.bottom.equalToSuperview().inset(26)
+            make.width.height.equalTo(40)
+        }
 
-        let profileNameConstraints = [
-            NSLayoutConstraint(item: profileNameLabel, attribute: .leading, relatedBy: .equal, toItem: profileImageView, attribute: .trailing, multiplier: 1, constant: 8),
-            NSLayoutConstraint(item: profileNameLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 24),
-            NSLayoutConstraint(item: profileNameLabel, attribute: .trailing, relatedBy: .lessThanOrEqual, toItem: timeLabel, attribute: .leading, multiplier: 1, constant: -5),
-            profileNameLabel.heightAnchor.constraint(equalToConstant: 20)
-        ]
-        NSLayoutConstraint.activate(profileNameConstraints)
+        profileNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.trailing).offset(8)
+            make.top.equalToSuperview().inset(24)
+            make.trailing.lessThanOrEqualTo(timeLabel.snp.leading).inset(-5)
+            make.height.equalTo(20)
+        }
 
-        let messageConstraints = [
-            NSLayoutConstraint(item: messageLabel, attribute: .leading, relatedBy: .equal, toItem: profileNameLabel, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: messageLabel, attribute: .top, relatedBy: .equal, toItem: profileNameLabel, attribute: .bottom, multiplier: 1, constant: 4),
-            NSLayoutConstraint(item: messageLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -43),
-            messageLabel.heightAnchor.constraint(equalToConstant: 20)
-        ]
-        NSLayoutConstraint.activate(messageConstraints)
+        messageLabel.snp.makeConstraints { make in
+            make.leading.equalTo(profileNameLabel)
+            make.top.equalTo(profileNameLabel.snp.bottom).offset(4)
+            make.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(20)
+        }
 
         let timeConstraints = [
             NSLayoutConstraint(item: timeLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 24),
             NSLayoutConstraint(item: timeLabel, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: -24),
         ]
         NSLayoutConstraint.activate(timeConstraints)
+        
+        timeLabel.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(24)
+        }
     }
 }

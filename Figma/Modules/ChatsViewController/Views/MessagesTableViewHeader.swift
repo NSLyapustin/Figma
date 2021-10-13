@@ -52,21 +52,17 @@ class MessagesTableViewHeader: UIView {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        let pinnedLabelConstaints = [
-            NSLayoutConstraint(item: pinnedLabel, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: 11),
-            NSLayoutConstraint(item: pinnedLabel, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 24),
-            pinnedLabel.heightAnchor.constraint(equalToConstant: 16),
-        ]
-        NSLayoutConstraint.activate(pinnedLabelConstaints)
-        
-        let collectionViewConstraints = [
-            NSLayoutConstraint(item: collectionView, attribute: .top, relatedBy: .equal, toItem: pinnedLabel, attribute: .bottom, multiplier: 1, constant: 16),
-            NSLayoutConstraint(item: collectionView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: collectionView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0),
-            collectionView.heightAnchor.constraint(equalToConstant: 92),
-            NSLayoutConstraint(item: collectionView, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-        ]
-        NSLayoutConstraint.activate(collectionViewConstraints)
+        pinnedLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(11)
+            make.leading.equalToSuperview().inset(24)
+            make.height.equalTo(16)
+        }
+
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(pinnedLabel.snp.bottom).offset(16)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(92)
+        }
         
         self.addBorders(edges: [.bottom], color: .separator, thickness: 0.5)
     }

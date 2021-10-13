@@ -47,11 +47,11 @@ class ProfileViewController: UIViewController {
     
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(logoutButton)
-        let logoutButtonConstraints = [
-            NSLayoutConstraint(item: logoutButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: logoutButton, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 136)
-        ]
-        NSLayoutConstraint.activate(logoutButtonConstraints)
+        
+        logoutButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().inset(136)
+        }
     }
 
     @objc private func onMessagesButtonTouchUpInside() {
